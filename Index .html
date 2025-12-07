@@ -1,223 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>School Portal</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firdausi Model Academy</title>
 
-<style>
-    body { font-family: Arial; padding: 20px; background: #f5f7fb; }
-    .box { background: white; padding: 20px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 0 10px #ccc; }
-    input, select { width: 100%; padding: 10px; margin: 8px 0; border-radius: 5px; border: 1px solid #ccc; }
-    button { width: 100%; padding: 12px; background: #0066ff; border: none; color: white; border-radius: 5px; font-size: 16px; }
-    h2 { text-align: center; }
-    .hidden { display: none; }
-    .menu-btn { background: #222; margin: 5px 0; }
-</style>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+            text-align: center;
+        }
 
+        .container {
+            background: white;
+            padding: 20px;
+            margin: 0 auto;
+            max-width: 500px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+        }
+
+        input, select, button {
+            width: 90%;
+            padding: 12px;
+            margin: 8px 0;
+            font-size: 16px;
+        }
+
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .link {
+            color: blue;
+            font-size: 15px;
+        }
+    </style>
 </head>
 <body>
 
-<h2>SCHOOL PORTAL</h2>
+    <h1>Welcome to Firdausi Model Academy</h1>
 
-<div id="mainMenu" class="box">
-    <button class="menu-btn" onclick="showSection('studentReg')">Student Registration</button>
-    <button class="menu-btn" onclick="showSection('studentLogin')">Student Login</button>
-    <button class="menu-btn" onclick="showSection('staffLogin')">Staff Login</button>
-    <button class="menu-btn" onclick="showSection('adminLogin')">Admin Login</button>
-</div>
+    <div class="container">
+        <h2>Select Login Type</h2>
 
-<!-- STUDENT REGISTRATION -->
-<div id="studentReg" class="box hidden">
-    <h3>Student Registration</h3>
-    <input id="regName" placeholder="Full Name">
-    <input id="regClass" placeholder="Class (e.g. JSS 1)">
-    <button onclick="registerStudent()">Register</button>
-</div>
+        <button onclick="showSection('studentLogin')">Student Login</button>
+        <button onclick="showSection('staffLogin')">Staff Login</button>
+        <button onclick="showSection('adminLogin')">Admin Login</button>
+        <button onclick="showSection('studentReg')">Student Registration</button>
+    </div>
 
-<!-- STUDENT LOGIN -->
-<div id="studentLogin" class="box hidden">
-    <h3>Student Login</h3>
-    <input id="stuID" placeholder="Student ID">
-    <button onclick="loginStudent()">Login</button>
-</div>
 
-<div id="studentPanel" class="box hidden">
-    <h3>Student Dashboard</h3>
-    <p id="stuInfo"></p>
-    <h4>Report Sheet:</h4>
-    <div id="stuReport"></div>
-    <button onclick="goHome()">Logout</button>
-</div>
+    <!-- Student Login -->
+    <div class="container" id="studentLogin" style="display:none;">
+        <h2>Student Login</h2>
+        <input id="stuID" type="text" placeholder="Student ID">
+        <button onclick="alert('Student Login Successful (Demo)')">Login</button>
+        <p class="link" onclick="hideAll()">Back</p>
+    </div>
 
-<!-- STAFF LOGIN -->
-<div id="staffLogin" class="box hidden">
-    <h3>Staff Login</h3>
-    <input id="staffID" placeholder="Staff ID">
-    <button onclick="loginStaff()">Login</button>
-</div>
+    <!-- Staff Login -->
+    <div class="container" id="staffLogin" style="display:none;">
+        <h2>Staff Login</h2>
+        <input id="staffUser" type="text" placeholder="Staff Username">
+        <input id="staffPass" type="password" placeholder="Password">
+        <button onclick="alert('Staff Login Successful (Demo)')">Login</button>
+        <p class="link" onclick="hideAll()">Back</p>
+    </div>
 
-<div id="staffPanel" class="box hidden">
-    <h3>Staff Dashboard</h3>
-    <select id="scoreClass"></select>
-    <input id="scoreStuID" placeholder="Student ID">
-    <input id="scoreSubject" placeholder="Subject">
-    <input id="scoreMark" type="number" placeholder="Mark">
-    <button onclick="addScore()">Add / Update Score</button>
-    <button onclick="goHome()">Logout</button>
-</div>
+    <!-- Admin Login -->
+    <div class="container" id="adminLogin" style="display:none;">
+        <h2>Admin Login</h2>
+        <input id="adminUser" type="text" placeholder="Admin Username">
+        <input id="adminPass" type="password" placeholder="Password">
+        <button onclick="alert('Admin Login Successful (Demo)')">Login</button>
+        <p class="link" onclick="hideAll()">Back</p>
+    </div>
 
-<!-- ADMIN LOGIN -->
-<div id="adminLogin" class="box hidden">
-    <h3>Admin Login</h3>
-    <input id="adminPass" placeholder="Enter admin password">
-    <button onclick="loginAdmin()">Login</button>
-</div>
 
-<div id="adminPanel" class="box hidden">
-    <h3>Admin Dashboard</h3>
+    <!-- Student Registration -->
+    <div class="container" id="studentReg" style="display:none;">
+        <h2>Student Registration</h2>
 
-    <h4>Pending Students</h4>
-    <div id="pendingList"></div>
+        <input type="text" id="fullname" placeholder="Full Name"required>
+        <input type="text" id="gender" placeholder="Gender"required>
+        <input type="text" id="dob" placeholder="Date of Birth"required>
+        <input type="text" id="class" placeholder="Class"required>
+        <input type="text" id="School attend" placeholder="School Attended">
+        <input type="text" id="address" placeholder="Home Address"required>
+        <input type="text" id="parent" placeholder="Parent/Guardian Name">
+        <input type="text" id="phone" placeholder="Parent Phone Number"required>
 
-    <h4>Staff Management</h4>
-    <input id="newStaffName" placeholder="Staff Name">
-    <button onclick="addStaff()">Add Staff</button>
+        <button onclick="alert('Registered Successfully (Demo)')">Submit</button>
+        <p class="link" onclick="hideAll()">Back</p>
+    </div>
 
-    <div id="staffList"></div>
 
-    <button onclick="goHome()">Logout</button>
-</div>
+    <script>
+        function showSection(id) {
+            hideAll();
+            document.getElementById(id).style.display = "block";
+            window.scrollTo(0,0);
+        }
 
-<script>
-let students = JSON.parse(localStorage.getItem("students") || "{}");
-let staff = JSON.parse(localStorage.getItem("staff") || "{}");
-let scores = JSON.parse(localStorage.getItem("scores") || "{}");
-let pending = JSON.parse(localStorage.getItem("pending") || "[]");
-
-function save() {
-    localStorage.setItem("students", JSON.stringify(students));
-    localStorage.setItem("staff", JSON.stringify(staff));
-    localStorage.setItem("scores", JSON.stringify(scores));
-    localStorage.setItem("pending", JSON.stringify(pending));
-}
-
-function showSection(id){
-    document.querySelectorAll(".box").forEach(b => b.classList.add("hidden"));
-    document.getElementById(id).classList.remove("hidden");
-}
-
-function goHome(){
-    showSection("mainMenu");
-}
-
-function registerStudent(){
-    let name = regName.value;
-    let cls = regClass.value;
-    if(!name || !cls){ alert("Fill all fields"); return; }
-
-    let temp = { name, class: cls };
-    pending.push(temp);
-    save();
-    alert("Registration sent to admin.");
-    goHome();
-}
-
-function loginStudent(){
-    let id = stuID.value;
-    if(!students[id]) return alert("Student not found or not approved yet.");
-    
-    let s = students[id];
-    document.getElementById("stuInfo").innerText = 
-        `Name: ${s.name}\nClass: ${s.class}\nStudent ID: ${id}`;
-
-    let rep = scores[id] || {};
-    let out = "";
-    for(let sub in rep){
-        out += `${sub}: ${rep[sub]}<br>`;
-    }
-    document.getElementById("stuReport").innerHTML = out || "No scores yet.";
-
-    showSection("studentPanel");
-}
-
-function loginStaff(){
-    let id = staffID.value;
-    if(!staff[id]) return alert("Staff not found");
-    populateClasses();
-    showSection("staffPanel");
-}
-
-function populateClasses(){
-    let classes = [...new Set(Object.values(students).map(s => s.class))];
-    scoreClass.innerHTML = classes.map(c=>`<option>${c}</option>`).join("");
-}
-
-function addScore(){
-    let stu = scoreStuID.value;
-    let sub = scoreSubject.value;
-    let mark = scoreMark.value;
-    if(!students[stu]) return alert("Invalid student ID");
-    
-    if(!scores[stu]) scores[stu] = {};
-    scores[stu][sub] = Number(mark);
-
-    save();
-    alert("Score saved.");
-}
-
-function loginAdmin(){
-    if(adminPass.value !== "admin123") return alert("Wrong password");
-    loadPending();
-    loadStaff();
-    showSection("adminPanel");
-}
-
-function loadPending(){
-    let out = "";
-    pending.forEach((p,i)=>{
-        out += `${p.name} (${p.class}) 
-        <button onclick="approve(${i})">Approve</button>
-        <button onclick="reject(${i})">Reject</button><br><br>`;
-    });
-    pendingList.innerHTML = out || "No pending students.";
-}
-
-function approve(i){
-    let p = pending[i];
-    let id = "STU" + Math.floor(Math.random()*99999);
-
-    students[id] = p;
-    pending.splice(i,1);
-    save();
-    loadPending();
-    alert("Approved. Student ID: " + id);
-}
-
-function reject(i){
-    pending.splice(i,1);
-    save();
-    loadPending();
-}
-
-function addStaff(){
-    let name = newStaffName.value;
-    if(!name) return;
-    let id = "STF" + Math.floor(Math.random()*99999);
-    staff[id] = { name };
-    save();
-    loadStaff();
-    alert("Staff Added. ID: " + id);
-}
-
-function loadStaff(){
-    let out = "";
-    for(let id in staff){
-        out += `${id} — ${staff[id].name}<br>`;
-    }
-    staffList.innerHTML = out || "No staff yet.";
-}
-
-</script>
+        function hideAll() {
+            document.querySelectorAll('.container').forEach(box => box.style.display = 'none');
+            document.querySelector('.container').style.display = 'block';
+        }
+    </script>
 
 </body>
 </html>
