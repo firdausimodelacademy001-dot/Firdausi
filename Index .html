@@ -40,21 +40,19 @@
             background: #0056b3;
         }
 
-        h2 {
-            margin-bottom: 10px;
-        }
-
         .link {
             color: blue;
             font-size: 15px;
+            cursor: pointer;
         }
     </style>
 </head>
+
 <body>
 
     <h1>Welcome to Firdausi Model Academy</h1>
 
-    <div class="container">
+    <div class="container" id="mainMenu">
         <h2>Select Login Type</h2>
 
         <button onclick="showSection('studentLogin')">Student Login</button>
@@ -63,11 +61,10 @@
         <button onclick="showSection('studentReg')">Student Registration</button>
     </div>
 
-
     <!-- Student Login -->
     <div class="container" id="studentLogin" style="display:none;">
         <h2>Student Login</h2>
-        <input id="stuID" type="text" placeholder="Student ID">
+        <input id="stuID" type="text" placeholder="Student ID" required>
         <button onclick="alert('Student Login Successful (Demo)')">Login</button>
         <p class="link" onclick="hideAll()">Back</p>
     </div>
@@ -75,8 +72,8 @@
     <!-- Staff Login -->
     <div class="container" id="staffLogin" style="display:none;">
         <h2>Staff Login</h2>
-        <input id="staffUser" type="text" placeholder="Staff Username">
-        <input id="staffPass" type="password" placeholder="Password">
+        <input id="staffUser" type="text" placeholder="Staff Username" required>
+        <input id="staffPass" type="password" placeholder="Password" required>
         <button onclick="alert('Staff Login Successful (Demo)')">Login</button>
         <p class="link" onclick="hideAll()">Back</p>
     </div>
@@ -84,41 +81,39 @@
     <!-- Admin Login -->
     <div class="container" id="adminLogin" style="display:none;">
         <h2>Admin Login</h2>
-        <input id="adminUser" type="text" placeholder="Admin Username">
-        <input id="adminPass" type="password" placeholder="Password">
+        <input id="adminUser" type="text" placeholder="Admin Username" required>
+        <input id="adminPass" type="password" placeholder="Password" required>
         <button onclick="alert('Admin Login Successful (Demo)')">Login</button>
         <p class="link" onclick="hideAll()">Back</p>
     </div>
-
 
     <!-- Student Registration -->
     <div class="container" id="studentReg" style="display:none;">
         <h2>Student Registration</h2>
 
-        <input type="text" id="fullname" placeholder="Full Name"required>
-        <input type="text" id="gender" placeholder="Gender"required>
-        <input type="text" id="dob" placeholder="Date of Birth"required>
-        <input type="text" id="class" placeholder="Class"required>
-        <input type="text" id="School attend" placeholder="School Attended">
-        <input type="text" id="address" placeholder="Home Address"required>
+        <input type="text" id="fullname" placeholder="Full Name" required>
+        <input type="text" id="gender" placeholder="Gender" required>
+        <input type="text" id="dob" placeholder="Date of Birth" required>
+        <input type="text" id="className" placeholder="Class" required>
+        <input type="text" id="schoolAttended" placeholder="School Attended">
+        <input type="text" id="address" placeholder="Home Address" required>
         <input type="text" id="parent" placeholder="Parent/Guardian Name">
-        <input type="text" id="phone" placeholder="Parent Phone Number"required>
+        <input type="text" id="phone" placeholder="Parent Phone Number" required>
 
         <button onclick="alert('Registered Successfully (Demo)')">Submit</button>
         <p class="link" onclick="hideAll()">Back</p>
     </div>
 
-
     <script>
         function showSection(id) {
             hideAll();
             document.getElementById(id).style.display = "block";
-            window.scrollTo(0,0);
+            window.scrollTo(0, 0);
         }
 
         function hideAll() {
             document.querySelectorAll('.container').forEach(box => box.style.display = 'none');
-            document.querySelector('.container').style.display = 'block';
+            document.getElementById('mainMenu').style.display = 'block';
         }
     </script>
 
